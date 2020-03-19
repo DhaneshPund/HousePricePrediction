@@ -11,9 +11,9 @@ from sklearn.externals import joblib
 @app.route('/train')
 def train():
     df_train = pd.read_csv('USA_Housing.csv')
-    df_train = df_train.iloc[:, 0:6]
-    X = df_train.iloc[:, 0:5]
-    y = df_train['Price']
+    df_train = df_train.iloc[:, 0:6] #dropping Address column
+    X = df_train.iloc[:, 0:5] #vertical split
+    y = df_train['Price'] #vertical split
     classifier = LinearRegression()
     classifier.fit(X, y)
     joblib.dump(classifier, 'filename.pkl')
